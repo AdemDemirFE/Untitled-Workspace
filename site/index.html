@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<!--
+  ÖNEMLİ / IMPORTANT — YER TUTUCU İÇERİK (PLACEHOLDER CONTENT)
+  Bu sayfadaki ad ("Deniz Yılmaz"), projeler, şirketler, tarihler, sosyal medya
+  bağlantıları ve e-posta adresi (deniz.yilmaz@example.com) örnek/yer tutucudur.
+  Yayınlamadan önce hepsini kendi bilgilerinle değiştir.
+  The name, projects, employers, links and email below are all placeholders.
+
+  Dosyalar: index.html + styles.css + script.js (çerçeve yok, derleme yok).
+  Doğrudan diskten (file://) açılabilir.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deniz Yılmaz — Full-Stack Yazılım Geliştirici</title>
+<meta name="description" content="Deniz Yılmaz: web arayüzleri, API'ler ve bulut altyapısı geliştiren Full-Stack yazılım geliştirici. Yer tutucu portfolyo sayfası.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b0d14" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%235b45f0'/%3E%3Cpath d='M12 10l-6 6 6 6M20 10l6 6-6 6' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<!-- Tek harici kaynak: Google Fonts. Yüklenemezse styles.css içindeki sistem yazı tipleri kullanılır. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+
+<!-- JS varsa animasyon başlangıç durumlarını (gizli → görünür) etkinleştirir; JS yoksa içerik zaten görünür kalır. -->
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Ana içeriğe geç</a>
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progress-bar"></div></div>
+
+<header class="site-header" id="site-header">
+  <nav class="nav container" aria-label="Ana gezinme">
+    <a class="brand" href="#top" aria-label="Deniz Yılmaz — sayfanın başı">
+      <span class="brand__mark" aria-hidden="true">&lt;/&gt;</span>
+      <span class="brand__name">deniz.dev</span>
+    </a>
+
+    <button class="nav__toggle" id="nav-toggle" type="button"
+            aria-expanded="false" aria-controls="nav-menu" aria-label="Menüyü aç">
+      <span class="nav__bars" aria-hidden="true"></span>
+    </button>
+
+    <ul class="nav__list" id="nav-menu">
+      <li><a class="nav__link" href="#hakkimda">Hakkımda</a></li>
+      <li><a class="nav__link" href="#yetenekler">Yetenekler</a></li>
+      <li><a class="nav__link" href="#projeler">Projeler</a></li>
+      <li><a class="nav__link" href="#deneyim">Deneyim</a></li>
+      <li><a class="nav__link nav__link--cta" href="#iletisim">İletişim</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero__inner container">
+      <div class="hero__text">
+        <p class="hero__eyebrow hero-in" style="--n:0">Merhaba, ben</p>
+        <h1 class="hero__title hero-in" style="--n:1" id="hero-title">
+          <span class="grad">Deniz Yılmaz</span>
+          <span class="visually-hidden">, Full-Stack Yazılım Geliştirici</span>
+        </h1>
+        <p class="hero__role hero-in" style="--n:2" aria-hidden="true">
+          <span class="hero__prompt">&gt;</span>
+          <span class="typed" id="typed">Full-Stack geliştirici</span><span class="cursor"></span>
+        </p>
+        <p class="hero__lead hero-in" style="--n:3">
+          Hızlı, erişilebilir ve akıcı hissettiren web ürünleri geliştiriyorum:
+          arayüzden API'ye, veritabanından dağıtıma kadar uçtan uca.
+        </p>
+        <div class="hero__actions hero-in" style="--n:4">
+          <a class="btn btn--primary" href="#projeler">Projelerimi gör</a>
+          <a class="btn btn--ghost" href="#iletisim">İletişime geç</a>
+        </div>
+      </div>
+
+      <figure class="terminal hero-in" style="--n:3" aria-label="Terminal örneği: kısa bir tanıtım">
+        <div class="terminal__bar" aria-hidden="true">
+          <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+          <span class="terminal__title">~/deniz — zsh</span>
+        </div>
+        <pre class="terminal__body"><code><span class="line" style="--n:0"><span class="t-prompt">$</span> whoami</span>
+<span class="line" style="--n:1"><span class="t-out">deniz — full-stack geliştirici</span></span>
+<span class="line" style="--n:2"><span class="t-prompt">$</span> cat profil.json</span>
+<span class="line" style="--n:3">{</span>
+<span class="line" style="--n:4">  <span class="t-key">"diller"</span>: [<span class="t-str">"TypeScript"</span>, <span class="t-str">"Java"</span>, <span class="t-str">"SQL"</span>],</span>
+<span class="line" style="--n:5">  <span class="t-key">"odak"</span>: <span class="t-str">"temiz, hızlı, erişilebilir"</span>,</span>
+<span class="line" style="--n:6">  <span class="t-key">"müsait"</span>: <span class="t-bool">true</span></span>
+<span class="line" style="--n:7">}</span>
+<span class="line" style="--n:8"><span class="t-prompt">$</span> npm run merhaba<span class="cursor cursor--block"></span></span></code></pre>
+      </figure>
+    </div>
+    <a class="hero__scroll" href="#hakkimda" aria-label="Aşağı kaydır: Hakkımda">
+      <span class="hero__scroll-dot" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- HAKKIMDA -->
+  <section class="section" id="hakkimda" aria-labelledby="hakkimda-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="section__kicker">01 / Hakkımda</p>
+        <h2 class="section__title" id="hakkimda-title">Kod yazmayı ürüne dönüştürmeyi seviyorum</h2>
+      </header>
+
+      <div class="about">
+        <div class="about__text" data-stagger>
+          <p class="reveal">
+            Altı yılı aşkın süredir ürün odaklı ekiplerde çalışıyorum. Bir fikri
+            kullanıcının elinde çalışan, ölçülebilir ve bakımı kolay bir yazılıma
+            çevirmek benim için işin en keyifli kısmı.
+          </p>
+          <p class="reveal">
+            Gün içinde çoğunlukla TypeScript, React ve Java ile çalışırım; test
+            yazmayı, erişilebilirliği ve performansı "sonra bakarız" listesine
+            değil, tanımın içine koyarım. Boş zamanlarımda açık kaynağa katkı
+            verir, yerel topluluklarda konuşma yaparım.
+          </p>
+          <p class="reveal">
+            Şu an ölçeklenebilir web uygulamaları ve geliştirici deneyimi
+            üzerine yeni fırsatlara açığım.
+          </p>
+        </div>
+
+        <ul class="stats" data-stagger aria-label="Rakamlarla özet">
+          <li class="stat reveal">
+            <span class="stat__num"><span data-count="6" data-suffix="+">6+</span></span>
+            <span class="stat__label">yıl deneyim</span>
+          </li>
+          <li class="stat reveal">
+            <span class="stat__num"><span data-count="32" data-suffix="">32</span></span>
+            <span class="stat__label">tamamlanan proje</span>
+          </li>
+          <li class="stat reveal">
+            <span class="stat__num"><span data-count="14" data-suffix="">14</span></span>
+            <span class="stat__label">açık kaynak katkısı</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- YETENEKLER -->
+  <section class="section section--alt" id="yetenekler" aria-labelledby="yetenekler-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="section__kicker">02 / Yetenekler</p>
+        <h2 class="section__title" id="yetenekler-title">Araç çantam</h2>
+      </header>
+
+      <div class="skills" data-stagger>
+        <article class="skill-group reveal" aria-labelledby="sg-front">
+          <h3 id="sg-front">Frontend</h3>
+          <ul class="skill-list">
+            <li class="skill" style="--level:.92; --i:0">
+              <div class="skill__row"><span>JavaScript / TypeScript</span><span class="skill__pct"><span data-count="92" data-suffix="%">92%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.9; --i:1">
+              <div class="skill__row"><span>React</span><span class="skill__pct"><span data-count="90" data-suffix="%">90%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.88; --i:2">
+              <div class="skill__row"><span>CSS ve animasyon</span><span class="skill__pct"><span data-count="88" data-suffix="%">88%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.8; --i:3">
+              <div class="skill__row"><span>Erişilebilirlik</span><span class="skill__pct"><span data-count="80" data-suffix="%">80%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+          </ul>
+        </article>
+
+        <article class="skill-group reveal" aria-labelledby="sg-back">
+          <h3 id="sg-back">Backend</h3>
+          <ul class="skill-list">
+            <li class="skill" style="--level:.86; --i:0">
+              <div class="skill__row"><span>Node.js</span><span class="skill__pct"><span data-count="86" data-suffix="%">86%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.78; --i:1">
+              <div class="skill__row"><span>Java / Spring Boot</span><span class="skill__pct"><span data-count="78" data-suffix="%">78%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.82; --i:2">
+              <div class="skill__row"><span>PostgreSQL</span><span class="skill__pct"><span data-count="82" data-suffix="%">82%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.85; --i:3">
+              <div class="skill__row"><span>REST ve GraphQL</span><span class="skill__pct"><span data-count="85" data-suffix="%">85%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+          </ul>
+        </article>
+
+        <article class="skill-group reveal" aria-labelledby="sg-ops">
+          <h3 id="sg-ops">DevOps ve araçlar</h3>
+          <ul class="skill-list">
+            <li class="skill" style="--level:.8; --i:0">
+              <div class="skill__row"><span>Docker</span><span class="skill__pct"><span data-count="80" data-suffix="%">80%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.76; --i:1">
+              <div class="skill__row"><span>CI/CD</span><span class="skill__pct"><span data-count="76" data-suffix="%">76%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.78; --i:2">
+              <div class="skill__row"><span>Linux</span><span class="skill__pct"><span data-count="78" data-suffix="%">78%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+            <li class="skill" style="--level:.9; --i:3">
+              <div class="skill__row"><span>Git</span><span class="skill__pct"><span data-count="90" data-suffix="%">90%</span></span></div>
+              <div class="skill__track" aria-hidden="true"><div class="skill__fill"></div></div>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJELER -->
+  <section class="section" id="projeler" aria-labelledby="projeler-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="section__kicker">03 / Projeler</p>
+        <h2 class="section__title" id="projeler-title">Seçilmiş çalışmalar</h2>
+        <p class="section__sub">Aşağıdaki projeler örnek/yer tutucudur.</p>
+      </header>
+
+      <ul class="projects" data-stagger>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">01</p>
+            <h3 class="card__title">Yapı Market</h3>
+            <p class="card__text">İnşaat malzemesi satışı için çok satıcılı e-ticaret platformu: stok, sepet ve sipariş takibi.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>React</li><li>Spring Boot</li><li>PostgreSQL</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/yapi-market" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Yapı Market, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">02</p>
+            <h3 class="card__title">Panoram</h3>
+            <p class="card__text">Gerçek zamanlı satış panosu; canlı grafikler ve filtrelenebilir raporlar.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>TypeScript</li><li>WebSocket</li><li>D3</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/panoram" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Panoram, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">03</p>
+            <h3 class="card__title">Görevci</h3>
+            <p class="card__text">Klavye dostu görev panosu: sürükle-bırak, çevrimdışı çalışma ve ekip paylaşımı.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>Node.js</li><li>IndexedDB</li><li>PWA</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/gorevci" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Görevci, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">04</p>
+            <h3 class="card__title">Akış Hattı</h3>
+            <p class="card__text">Tek komutla test, imaj üretimi ve bulut dağıtımı yapan CI/CD şablonu.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>Docker</li><li>GitHub Actions</li><li>Terraform</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/akis-hatti" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Akış Hattı, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">05</p>
+            <h3 class="card__title">Hava Sözlüğü</h3>
+            <p class="card__text">Açık veri kaynaklarını tek bir hızlı, önbellekli REST API'de toplayan hava durumu servisi.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>Java 21</li><li>Redis</li><li>OpenAPI</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/hava-sozlugu" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Hava Sözlüğü, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+        <li class="reveal">
+          <article class="card" data-tilt>
+            <p class="card__num" aria-hidden="true">06</p>
+            <h3 class="card__title">Kıvılcım UI</h3>
+            <p class="card__text">Erişilebilir, tema destekli, bağımlılıksız bir bileşen kütüphanesi.</p>
+            <ul class="tags" aria-label="Teknolojiler"><li>Web Components</li><li>CSS</li><li>Storybook</li></ul>
+            <a class="card__link" href="https://github.com/ornek-kullanici/kivilcim-ui" target="_blank" rel="noopener noreferrer">Kaynak kodu<span class="visually-hidden"> — Kıvılcım UI, yeni sekmede açılır</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DENEYİM -->
+  <section class="section section--alt" id="deneyim" aria-labelledby="deneyim-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="section__kicker">04 / Deneyim</p>
+        <h2 class="section__title" id="deneyim-title">Yolculuk</h2>
+      </header>
+
+      <ol class="timeline" data-stagger>
+        <li class="timeline__item reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__date">2024 — Günümüz</p>
+          <h3 class="timeline__role">Kıdemli Full-Stack Geliştirici</h3>
+          <p class="timeline__org">Örnek Teknoloji A.Ş.</p>
+          <p>Ödeme ve sipariş servislerinin yeniden tasarımına liderlik ettim; sayfa yüklenme süresini yarıya indirdim ve ekip içi kod inceleme kültürünü kurdum.</p>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__date">2021 — 2024</p>
+          <h3 class="timeline__role">Yazılım Geliştirici</h3>
+          <p class="timeline__org">Demo Yazılım Ltd.</p>
+          <p>Mikroservis mimarisine geçişte API'ler ve React tabanlı yönetim paneli geliştirdim; CI/CD hatlarını Docker ile standartlaştırdım.</p>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__date">2019 — 2021</p>
+          <h3 class="timeline__role">Frontend Geliştirici</h3>
+          <p class="timeline__org">Prototip Dijital</p>
+          <p>Kampanya siteleri ve tasarım sistemi üzerinde çalıştım; animasyon ve performans odaklı arayüzler yayına aldım.</p>
+        </li>
+        <li class="timeline__item reveal">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__date">2015 — 2019</p>
+          <h3 class="timeline__role">Bilgisayar Mühendisliği, Lisans</h3>
+          <p class="timeline__org">Örnek Üniversitesi</p>
+          <p>Algoritmalar, veritabanları ve dağıtık sistemler üzerine yoğunlaştım.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- İLETİŞİM -->
+  <section class="section" id="iletisim" aria-labelledby="iletisim-title">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="section__kicker">05 / İletişim</p>
+        <h2 class="section__title" id="iletisim-title">Birlikte bir şey yapalım</h2>
+        <p class="section__sub">Yeni bir proje, iş fırsatı ya da sadece bir merhaba için yazabilirsin.</p>
+      </header>
+
+      <div class="contact reveal">
+        <p class="contact__label" id="email-label">E-posta</p>
+        <div class="contact__row">
+          <code class="contact__email" id="email-text" aria-labelledby="email-label">deniz.yilmaz@example.com</code>
+          <button class="btn btn--primary" type="button" id="copy-btn" data-copy-target="email-text">Kopyala</button>
+        </div>
+        <p class="contact__status" id="copy-status" role="status" aria-live="polite"></p>
+
+        <ul class="contact__links" aria-label="Sosyal bağlantılar">
+          <li><a class="link-arrow" href="mailto:deniz.yilmaz@example.com">E-posta uygulamasında aç</a></li>
+          <li><a class="link-arrow" href="https://github.com/ornek-kullanici" target="_blank" rel="noopener noreferrer">GitHub<span class="visually-hidden"> (yeni sekmede açılır)</span></a></li>
+          <li><a class="link-arrow" href="https://www.linkedin.com/in/ornek-kullanici" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (yeni sekmede açılır)</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <p>© <span id="year">2026</span> Deniz Yılmaz. Tüm hakları saklıdır.</p>
+    <p class="site-footer__note">Saf HTML, CSS ve JavaScript ile yapıldı.</p>
+    <a class="site-footer__top" href="#top">Başa dön <span aria-hidden="true">↑</span></a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

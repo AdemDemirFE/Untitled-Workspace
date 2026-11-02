@@ -1,0 +1,24 @@
+# Firenk local state (never committed)
+firenk-local/
+
+# Dependencies and build output
+node_modules/
+dist/
+build/
+out/
+.next/
+coverage/
+
+# Environment and secrets
+.env*
+!.env.example
+*.pem
+*.key
+.dev.vars
+
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

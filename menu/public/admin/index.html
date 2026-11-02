@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yönetim · QR Menü</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#c2410c">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <script type="module" src="/js/admin.js"></script>
+</head>
+<body>
+  <div id="boot" class="boot" role="status">Yükleniyor…</div>
+
+  <!-- Login -->
+  <main id="login-view" class="login" hidden>
+    <form id="login-form" class="card login-card" novalidate>
+      <h1 class="login-title">Yönetici girişi</h1>
+      <p class="muted">Menüyü düzenlemek için şifrenizi girin.</p>
+      <p id="login-notice" class="alert alert-info" role="status" hidden></p>
+      <div class="field">
+        <label for="password">Şifre</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="login-error">
+      </div>
+      <p id="login-error" class="alert alert-error" role="alert" hidden></p>
+      <button class="btn btn-primary btn-block" type="submit">Giriş yap</button>
+      <a class="muted-link" href="/">← Menüye dön</a>
+    </form>
+  </main>
+
+  <!-- Panel -->
+  <div id="app-view" hidden>
+    <a class="skip-link" href="#admin-main">İçeriğe geç</a>
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <p class="brand"><span id="brand-name">QR Menü</span> <span class="brand-sub">Yönetim</span></p>
+        <div class="header-actions">
+          <a class="btn btn-sm btn-ghost" href="/" target="_blank" rel="noopener">Menüyü gör<span class="visually-hidden"> (yeni sekmede açılır)</span></a>
+          <button id="logout" class="btn btn-sm" type="button">Çıkış</button>
+        </div>
+      </div>
+      <nav class="admin-nav" aria-label="Yönetim bölümleri">
+        <ul class="admin-nav-list">
+          <li><a href="#urunler" data-view="items">Ürünler</a></li>
+          <li><a href="#kategoriler" data-view="categories">Kategoriler</a></li>
+          <li><a href="#ayarlar" data-view="settings">Ayarlar</a></li>
+          <li><a href="#qr" data-view="qr">QR kod</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="admin-main" class="admin-main" tabindex="-1">
+      <p id="load-error" class="alert alert-error" role="alert" hidden></p>
+
+      <!-- Items -->
+      <section id="view-items" class="view" aria-labelledby="h-items" hidden>
+        <div class="view-head">
+          <h1 id="h-items" tabindex="-1">Ürünler</h1>
+          <button id="new-item" class="btn btn-primary" type="button">+ Yeni ürün</button>
+        </div>
+
+        <div class="filter-row">
+          <label for="item-filter">Kategori</label>
+          <select id="item-filter"></select>
+        </div>
+
+        <p id="items-flash" class="flash" role="status" aria-live="polite"></p>
+
+        <section id="item-editor" class="card editor" aria-labelledby="item-editor-title" hidden>
+          <h2 id="item-editor-title" tabindex="-1">Yeni ürün</h2>
+          <form id="item-form" novalidate>
+            <div class="form-grid">
+              <div class="field span-2">
+                <label for="item-name">Ürün adı <span class="req" aria-hidden="true">*</span></label>
+                <input id="item-name" name="name" type="text" maxlength="80" required autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="item-category">Kategori <span class="req" aria-hidden="true">*</span></label>
+                <select id="item-category" name="categoryId" required></select>
+              </div>
+              <div class="field">
+                <label for="item-price">Fiyat <span class="req" aria-hidden="true">*</span></label>
+                <input id="item-price" name="price" type="text" inputmode="decimal" required autocomplete="off" aria-describedby="item-price-hint">
+                <p id="item-price-hint" class="hint">Örn. 120 veya 89,90</p>
+              </div>
+              <div class="field span-2">
+                <label for="item-description">Açıklama</label>
+                <textarea id="item-description" name="description" rows="3" maxlength="400"></textarea>
+              </div>
+
+              <div class="field span-2">
+                <span class="label" id="item-image-label">Görsel</span>
+                <div class="image-picker">
+                  <div id="item-image-preview" class="image-preview" aria-hidden="true"></div>
+                  <div class="image-actions">
+                    <label class="btn btn-sm file-btn" for="item-image">Görsel seç</label>
+                    <input id="item-image" class="file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-labelledby="item-image-label" aria-describedby="item-image-hint item-image-status">
+                    <button id="item-image-remove" class="btn btn-sm btn-ghost" type="button" hidden>Görseli kaldır</button>
+                    <p id="item-image-hint" class="hint">JPG, PNG veya WEBP, en fazla 2 MB.</p>
+                    <p id="item-image-status" class="hint" role="status"></p>
+                  </div>
+                </div>
+              </div>
+
+              <fieldset class="field span-2 fieldset">
+                <legend>Etiketler</legend>
+                <div id="item-tag-presets" class="check-row"></div>
+                <label for="item-tags-extra" class="sub-label">Diğer etiketler (virgülle ayırın)</label>
+                <input id="item-tags-extra" type="text" maxlength="120" autocomplete="off">
+              </fieldset>
+
+              <div class="field span-2">
+                <label for="item-allergens">Alerjenler</label>
+                <input id="item-allergens" name="allergens" type="text" maxlength="200" autocomplete="off" aria-describedby="item-allergens-hint">
+                <p id="item-allergens-hint" class="hint">Örn. Gluten, süt, fıstık</p>
+              </div>
+
+              <div class="field span-2 check-row">
+                <label class="check"><input id="item-available" type="checkbox" checked> Satışta (stokta var)</label>
+                <label class="check"><input id="item-featured" type="checkbox"> Öne çıkan ürün</label>
+              </div>
+            </div>
+
+            <p id="item-form-error" class="alert alert-error" role="alert" hidden></p>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Kaydet</button>
+              <button id="item-cancel" class="btn" type="button">Vazgeç</button>
+            </div>
+          </form>
+        </section>
+
+        <div id="item-list" class="list-groups"></div>
+      </section>
+
+      <!-- Categories -->
+      <section id="view-categories" class="view" aria-labelledby="h-categories" hidden>
+        <div class="view-head">
+          <h1 id="h-categories" tabindex="-1">Kategoriler</h1>
+        </div>
+
+        <form id="category-form" class="card inline-form" novalidate>
+          <h2 class="card-title">Kategori ekle</h2>
+          <div class="form-grid">
+            <div class="field">
+              <label for="category-name">Kategori adı <span class="req" aria-hidden="true">*</span></label>
+              <input id="category-name" type="text" maxlength="60" required autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="category-description">Açıklama</label>
+              <input id="category-description" type="text" maxlength="200" autocomplete="off">
+            </div>
+            <div class="field span-2 check-row">
+              <label class="check"><input id="category-visible" type="checkbox" checked> Menüde görünsün</label>
+            </div>
+          </div>
+          <p id="category-form-error" class="alert alert-error" role="alert" hidden></p>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Ekle</button>
+          </div>
+        </form>
+
+        <p id="categories-flash" class="flash" role="status" aria-live="polite"></p>
+        <ul id="category-list" class="rows"></ul>
+      </section>
+
+      <!-- Settings -->
+      <section id="view-settings" class="view" aria-labelledby="h-settings" hidden>
+        <div class="view-head">
+          <h1 id="h-settings" tabindex="-1">Ayarlar</h1>
+        </div>
+        <form id="settings-form" class="card" novalidate>
+          <div class="form-grid">
+            <div class="field span-2">
+              <label for="settings-name">Restoran adı <span class="req" aria-hidden="true">*</span></label>
+              <input id="settings-name" type="text" maxlength="80" required autocomplete="organization">
+            </div>
+            <div class="field span-2">
+              <label for="settings-description">Açıklama</label>
+              <textarea id="settings-description" rows="2" maxlength="300"></textarea>
+            </div>
+            <div class="field span-2">
+              <span class="label" id="settings-logo-label">Logo</span>
+              <div class="image-picker">
+                <div id="settings-logo-preview" class="image-preview round" aria-hidden="true"></div>
+                <div class="image-actions">
+                  <label class="btn btn-sm file-btn" for="settings-logo">Logo seç</label>
+                  <input id="settings-logo" class="file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-labelledby="settings-logo-label" aria-describedby="settings-logo-hint settings-logo-status">
+                  <button id="settings-logo-remove" class="btn btn-sm btn-ghost" type="button" hidden>Logoyu kaldır</button>
+                  <p id="settings-logo-hint" class="hint">Kare bir görsel en iyi sonucu verir. En fazla 2 MB.</p>
+                  <p id="settings-logo-status" class="hint" role="status"></p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="settings-currency">Para birimi <span class="req" aria-hidden="true">*</span></label>
+              <input id="settings-currency" type="text" maxlength="8" required autocomplete="off" aria-describedby="settings-currency-hint">
+              <p id="settings-currency-hint" class="hint">Örn. ₺, TL, €</p>
+            </div>
+            <div class="field">
+              <label for="settings-color">Ana renk</label>
+              <div class="color-row">
+                <input id="settings-color" type="color" aria-describedby="settings-color-value">
+                <code id="settings-color-value"></code>
+              </div>
+            </div>
+          </div>
+          <p id="settings-error" class="alert alert-error" role="alert" hidden></p>
+          <p id="settings-flash" class="flash" role="status" aria-live="polite"></p>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Ayarları kaydet</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- QR -->
+      <section id="view-qr" class="view" aria-labelledby="h-qr" hidden>
+        <div class="view-head">
+          <h1 id="h-qr" tabindex="-1">QR kod</h1>
+        </div>
+        <div class="card qr-card">
+          <div class="qr-print">
+            <p id="qr-print-name" class="qr-print-name"></p>
+            <img id="qr-image" class="qr-image" alt="Menü adresinin QR kodu" width="240" height="240">
+            <p class="qr-print-hint">Menüyü görmek için QR kodu okutun</p>
+          </div>
+          <div class="qr-info">
+            <p class="label">Menü adresi</p>
+            <p class="qr-url"><code id="qr-url">…</code></p>
+            <p id="qr-error" class="alert alert-error" role="alert" hidden></p>
+            <div class="qr-actions">
+              <a id="qr-download" class="btn btn-primary" href="/api/admin/qr?format=png&amp;download=1" download="menu-qr.png">PNG indir</a>
+              <a class="btn" href="/api/admin/qr?format=svg&amp;download=1" download="menu-qr.svg">SVG indir</a>
+              <a id="qr-open" class="btn" href="/" target="_blank" rel="noopener">Menüyü aç<span class="visually-hidden"> (yeni sekmede açılır)</span></a>
+              <button id="qr-copy" class="btn btn-ghost" type="button">Adresi kopyala</button>
+              <button id="qr-print" class="btn btn-ghost" type="button">Yazdır</button>
+            </div>
+            <p id="qr-flash" class="flash" role="status" aria-live="polite"></p>
+            <p class="hint">Adres yanlışsa sunucuda <code>PUBLIC_URL</code> ortam değişkenini ayarlayın.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

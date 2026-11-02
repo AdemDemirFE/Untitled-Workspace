@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "goal": "QR menü projesi: menu/ klasöründe, yönetici panelinden menü içerikleri (kategori, ürün, fiyat, görsel) girilen, müşterinin QR ile açtığı web/mobil uyumlu yemek menüsü",
+  "stack": "Node.js (LTS) + Express in menu/. Data in a JSON file (menu/data/menu.json, atomic write, seeded on first run). Plain HTML/CSS/vanilla JS pages served by Express: public menu (/) and admin panel (/admin). Admin auth: single password from ADMIN_PASSWORD env, httpOnly session cookie. Image upload with multer to menu/uploads. QR code generated server-side with the 'qrcode' npm package. No frontend framework, no build step, no database server.",
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "Architecture: stack, data model, API and folder layout",
+      "description": "A shared backend is required because the admin's edits must reach every customer's phone, so localStorage alone does not work. Simplest option: Express + JSON file store (no native DB build on Windows). Data: settings {restaurantName, description, logoUrl, currency, primaryColor}; categories {id, name, description, sortOrder, isVisible}; items {id, categoryId, name, description, price, imageUrl, tags[], allergens, isAvailable, isFeatured, sortOrder}. API: GET /api/menu (public); POST /api/auth/login|logout, GET /api/auth/me; /api/admin/settings (GET/PUT), /api/admin/categories and /api/admin/items (CRUD + reorder), POST /api/admin/upload, GET /api/admin/qr. Pages: / customer menu, /admin panel.",
+      "ownerAgentId": "7c421b02-a07a-4ee5-a2cc-66cec8e29994",
+      "status": "done",
+      "dependsOn": [],
+      "acceptance": [
+        "Stack chosen with the reason a backend is needed",
+        "Data model, API list and folder layout defined"
+      ],
+      "acceptanceMet": 2
+    },
+    {
+      "id": "t2",
+      "title": "Frontend Engineer: build the QR menu app in menu/",
+      "description": "Implement server, JSON store, auth, admin API, upload, QR endpoint, customer menu page and admin panel per t1, plus README and a few node:test API tests. Worker self-checks in a real browser (no separate QA/reviewer on this small job).",
+      "ownerAgentId": "8b5236c1-06f5-4a67-9c81-79c5ea817df2",
+      "status": "done",
+      "dependsOn": ["t1"],
+      "acceptance": [
+        "cd menu && npm install && npm start serves / (menu) and /admin (panel); README explains setup and ADMIN_PASSWORD",
+        "Admin can log in, edit restaurant settings, add/edit/delete/reorder categories and items, upload an item image, toggle availability; changes show on / after reload",
+        "Admin API rejects requests without a valid session (401) and validates input (400 with a readable message)",
+        "Admin panel shows a QR code for the public menu URL and lets it be downloaded as PNG",
+        "Customer menu works at 360px and 1280px with no horizontal scroll: sticky category tabs, search, item cards with price/image/tags, unavailable items marked",
+        "User-entered text is rendered safely (no innerHTML with user data); npm test passes; no console errors"
+      ],
+      "acceptanceMet": 6
+    }
+  ],
+  "updatedAt": 1793665000000
+}

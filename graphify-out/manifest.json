@@ -1,0 +1,56 @@
+{
+  ".firenk/plans/default.json": {
+    "mtime": 1793622059.9823067,
+    "seen": 1793622159.2631547,
+    "ast_hash": "1a01726a0e4bcd4e34fa09dbe7e2b109",
+    "semantic_hash": ""
+  },
+  "firenk-local/analysis/current.json": {
+    "mtime": 1793621399.8030074,
+    "seen": 1793622159.2631547,
+    "ast_hash": "735eab94bcfc1f4274c4d0100e8a1e3d",
+    "semantic_hash": ""
+  },
+  "firenk-local/mail/mail.json": {
+    "mtime": 1793622075.7566578,
+    "seen": 1793622159.2631547,
+    "ast_hash": "e2b3d3c3e631585fc1131848b8eb26a8",
+    "semantic_hash": ""
+  },
+  "firenk-local/notifications/notifications.json": {
+    "mtime": 1793622076.2666225,
+    "seen": 1793622159.2631547,
+    "ast_hash": "05ae17c4da3a8ac75d03e72c8e0d25e2",
+    "semantic_hash": ""
+  },
+  "firenk-local/office/.removed-agents/4b6a521b-0360-42a4-a926-6e1aa71c7f12-2026-11-02T12-14-29-706Z.json": {
+    "mtime": 1793621669.7072222,
+    "seen": 1793622159.2631547,
+    "ast_hash": "7ef0a9f57b403bfb2f6a00d0930a2a9f",
+    "semantic_hash": ""
+  },
+  "firenk-local/office/agents.json": {
+    "mtime": 1793622075.7158258,
+    "seen": 1793622159.2631547,
+    "ast_hash": "5bf466501d3efdedccbd056568797bac",
+    "semantic_hash": ""
+  },
+  "firenk-local/project-intel.json": {
+    "mtime": 1793621399.775529,
+    "seen": 1793622159.2631547,
+    "ast_hash": "7beccaff17f696204635d8a3d08f9922",
+    "semantic_hash": ""
+  },
+  ".firenk/memory/project.md": {
+    "mtime": 1793622061.7360163,
+    "seen": 1793622159.2631547,
+    "ast_hash": "ec206484897b984873ce6f0f7c4f37af",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1793621390.4929526,
+    "seen": 1793622159.2631547,
+    "ast_hash": "7b42599177dcff01909d70532108223f",
+    "semantic_hash": ""
+  }
+}
